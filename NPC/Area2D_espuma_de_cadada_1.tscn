@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://NPC/gentle animations (48x48 resize) v02.png" type="Texture" id=1]
+[ext_resource path="res://NPC/Sprite.gd" type="Script" id=2]
+[ext_resource path="res://NPC/Area2D_espuma_de_cadada_1.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 192, 48, 96 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "espuma1_animacion"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 192, 48, 96 ), Rect2( 48, 192, 48, 96 ), Rect2( 96, 192, 48, 96 ), Rect2( 144, 192, 48, 96 ), Rect2( 192, 192, 48, 96 ), Rect2( 240, 192, 48, 96 ) ]
+}
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 3 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 192, 48, 96 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/espuma1_animacion = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
